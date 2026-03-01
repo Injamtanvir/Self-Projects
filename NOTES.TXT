@@ -1,0 +1,109 @@
+==================Python AudioBook Project============
+
+📚 PROJECT OVERVIEW:
+This program converts PDF files into audio. It reads text from a PDF document 
+and uses text-to-speech technology to speak the content out loud.
+
+
+🔧 SETUP INSTRUCTIONS:
+Before running this program, you need to install two packages:
+1. pyttsx3 → Provides text-to-speech conversion (makes computer speak)
+2. pypdf → Allows us to read and extract text from PDF files
+
+Installation command: uv add pyttsx3 pypdf
+Run the program with: uv run python main.py
+
+
+📝 CODE EXPLANATION (Line by Line):
+
+Line 1: import pyttsx3
+→ Imports the text-to-speech library
+→ This lets the computer convert written text into spoken words
+→ "pyttsx3" stands for Python Text-to-Speech version 3
+
+
+Line 2: import pypdf
+→ Imports the PDF reading library
+→ This allows us to open PDF files and extract their text content
+→ Without this, Python can't understand PDF file format
+
+
+Line 3: from tkinter.filedialog import *
+→ Imports file dialog tools from tkinter (Python's built-in GUI library)
+→ The asterisk (*) means "import everything from filedialog"
+→ This gives us the file picker window to select which PDF to read
+
+
+Line 5: book = askopenfilename()
+→ Opens a file browser window for the user
+→ User can navigate and select a PDF file
+→ The selected file's path is stored in the variable "book"
+→ Example: book might contain "/Users/John/Documents/story.pdf"
+
+
+Line 6: pdfreader = pypdf.PdfReader(book)
+→ Creates a PDF reader object using the selected file
+→ PdfReader is like opening a book - it makes the PDF ready to read
+→ Now we can access pages and text from the PDF
+
+
+Line 8: pages = len(pdfreader.pages)
+→ Counts how many pages are in the PDF
+→ len() function gets the length (count) of pages
+→ Stored in variable "pages" so we know how many times to loop
+
+
+Line 10: for num in range(pages):
+→ Starts a loop that runs once for each page in the PDF
+→ "num" is the page number (starts at 0, like an index)
+→ If PDF has 10 pages, this loop runs 10 times (num = 0 to 9)
+
+
+Line 11:     page = pdfreader.pages[num]
+→ Gets the current page from the PDF using the page number
+→ Like flipping to a specific page in a physical book
+→ Stored in variable "page" for processing
+
+
+Line 12:     text = page.extract_text()
+→ Extracts all the text content from the current page
+→ Converts the visual text on the PDF page into a string variable
+→ Now "text" contains all words from that page as plain text
+
+
+Line 13:     speaker = pyttsx3.init()
+→ Initializes (starts up) the text-to-speech engine
+→ Creates a "speaker" object that can convert text to audio
+→ Like turning on the computer's voice system
+
+
+Line 14:     speaker.say(text)
+→ Tells the speaker to prepare to speak the text
+→ Loads the text into the speech queue (waiting line)
+→ Doesn't actually speak yet - just gets ready
+
+
+Line 15:     speaker.runAndWait()
+→ Actually speaks the text out loud and waits until finished
+→ "run" = start speaking, "Wait" = don't move to next page until done
+→ Ensures each page is fully read before moving to the next one
+
+
+🔄 HOW IT ALL WORKS TOGETHER:
+1. User runs the program
+2. File picker window appears → User selects a PDF
+3. Program opens the PDF and counts the pages
+4. For :each page
+   - Extract the text from that page
+   - Initialize the speech engine
+   - Speak the text out loud
+   - Wait until speaking is complete
+5. Move to the next page and repeat
+6. Program ends when all pages are read
+
+
+💡 KEY CONCEPTS:
+- Loop: Repeating the same actions for each page
+- Text Extraction: Converting PDF visual content to plain text
+- Text-to-Speech: Converting written words to spoken audio
+- File Dialog: User-friendly way to select files
