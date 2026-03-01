@@ -1,4 +1,3 @@
-````md
 # 📚 PDF to Python Audio Book
 
 Convert any **PDF document** into an **audio book** using Python.  
