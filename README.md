@@ -11,7 +11,6 @@ This project provides a command-line tool to generate QR codes from any URL or t
 - Generate QR codes from any text or URL input
 - Save QR codes as PNG images
 - Simple and easy-to-use command-line interface
-- Supports various data types including URLs, text, and more
 
 ## Requirements
 
@@ -56,15 +55,3 @@ QR code generated and saved as 'qrcode.png'
 ## Output
 
 The program generates a file named `qrcode.png` containing the QR code for the entered text or URL.
-
-## License
-
-See [LICENSE](LICENSE) file for details.
-
-## Troubleshooting
-
-If you encounter a `ModuleNotFoundError: No module named 'PIL'`, make sure you have installed the `pillow` package:
-
-```bash
-uv pip install pillow
-```
