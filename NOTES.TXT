@@ -1,0 +1,6 @@
+ADD Qr Code from Pypi
+--> uv pip install qrcode
+--> uv pip install pillow
+
+run the program
+uv run python main.py
