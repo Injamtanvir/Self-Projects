@@ -1,0 +1,13 @@
+=====================Image to Text Extract=============
+
+pip install PIL    # PIL (Pillow) is used for opening and manipulating images
+uv pip install pytesseract    # pytesseract is used for text extraction from image
+
+==> TO run pytesseract on your loacl machine 
+Install tesseract 
+For mac brew install tesseract
+check installed tesseract version via --> tesseract --version
+
+==>  Here:
+uv pip install pytesseract — installs the Python wrapper (talks to Tesseract)
+brew install tesseract — installs the actual OCR engine binary (does the real work)
