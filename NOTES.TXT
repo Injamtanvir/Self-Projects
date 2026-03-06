@@ -1,0 +1,16 @@
+=========Image Background Remover=============
+ 
+pip install pillow              # PIL(Python Image Library) is used for image Open & processing
+pip install rembg               # rembg(AI based Library) is used for background removal
+pip install onnxruntime         # Install onnxruntime for running the rembg model efficiently
+
+  
+--> Workflow
+    from PIL import Image
+    from rembg import remove
+    Take Input Image
+    Open Input Image
+    Remove Opened Image Background Image 
+    Output Image 
+    Save the Output Image 
+    Complete Message 
