@@ -1,8 +1,7 @@
 from turtle import Turtle
 
-
 class Scoreboard(Turtle):
-
+    '''This class is responsible for keeping track of the score and updating the scoreboard'''
     def __init__(self):
         super().__init__()
         self.color("white")

@@ -1,0 +1,172 @@
+=================Pong Game===============
+Game Between Two People
+
+1. create Screen
+from turtle import Screen, Turtle   # importing a screen from the turtle module
+
+screen = Screen()
+screen.bgcolor("black") # background color
+screen.setup(width=800, height=600) # screen size
+screen.title("Pong")
+
+screen.exitonclick() # exit on click
+=================================================
+
+2. Create and move a paddle
+paddle 
+width = 20
+height = 100
+x_pos = 350
+y_pos = 0
+
+3. Create another paddle
+OOP Concept paddle.py
+--> main.py
+r_paddle = Paddle((350, 0))
+l_paddle = Paddle((-350, 0))
+ball = Ball()
+scoreboard = Scoreboard()
+
+screen.listen()
+screen.onkey(r_paddle.go_up, "Up") # for left user
+screen.onkey(r_paddle.go_down, "Down") # for left user
+screen.onkey(l_paddle.go_up, "w") # for right user
+screen.onkey(l_paddle.go_down, "s") # for right user
+
+
+-->paddle.py
+from turtle import Turtle
+
+class Paddle(Turtle):
+    
+    def __init__(self, position):
+        super().__init__()
+        self.shape("square")
+        self.color("white")
+        self.shapesize(stretch_wid=5, stretch_len=1) #paddle size 
+        self.penup()
+        self.goto(position)
+
+    def go_up(self):
+        new_y = self.ycor() + 20
+        self.goto(self.xcor(), new_y)
+
+    def go_down(self):
+        new_y = self.ycor() - 20
+        self.goto(self.xcor(), new_y)
+
+
+=================================================
+4. Create the ball and make it move
+5. Detect Collision with wall and bounce
+6. Detect collision with paddle 
+7. Detects when paddle misses
+
+ball
+width = 20
+height = 20
+x_pos = 0
+y_pos = 0
+
+
+--> main.py
+game_is_on = True
+while game_is_on:
+    # time.sleep(0.1)
+    screen.update() # update the screen
+    ball.move()     
+
+    #Detect collision with wall
+    if ball.ycor() > 280 or ball.ycor() < -280:
+        ball.bounce_y()
+
+    #Detect collision with paddle
+    if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
+        ball.bounce_x()
+
+    #Detect R paddle misses
+    if ball.xcor() > 380:
+        ball.reset_position()
+        scoreboard.l_point()
+
+    #Detect L paddle misses:
+    if ball.xcor() < -380:
+        ball.reset_position()
+        scoreboard.r_point()
+
+--> ball.py
+from turtle import Turtle
+
+class Ball(Turtle):
+    '''This class is responsible for creating the ball and handling its movement and bouncing'''
+    def __init__(self):
+        super().__init__()
+        self.color("white")
+        self.shape("circle")
+        self.penup()
+        self.x_move = 3
+        self.y_move = 3
+        self.move_speed = 0.01
+
+    def move(self):
+        new_x = self.xcor() + self.x_move
+        new_y = self.ycor() + self.y_move
+        self.goto(new_x, new_y)
+
+    def bounce_y(self):
+        self.y_move *= -1 # direction change
+
+    def bounce_x(self):
+        self.x_move *= -1
+        self.move_speed *= 0.9
+
+    def reset_position(self):
+        self.goto(0, 0)
+        self.move_speed = 0.1
+        self.bounce_x()
+
+
+
+
+=======================================
+8. Score Keeping and Change the ball direction
+--> scoreboard.py
+from turtle import Turtle
+
+class Scoreboard(Turtle):
+    '''This class is responsible for keeping track of the score and updating the scoreboard'''
+    def __init__(self):
+        super().__init__()
+        self.color("white")
+        self.penup()
+        self.hideturtle()
+        self.l_score = 0
+        self.r_score = 0
+        self.update_scoreboard()
+
+    def update_scoreboard(self):
+        self.clear()
+        self.goto(-100, 200)
+        self.write(self.l_score, align="center", font=("Courier", 80, "normal"))
+        self.goto(100, 200)
+        self.write(self.r_score, align="center", font=("Courier", 80, "normal"))
+
+    def l_point(self):
+        self.l_score += 1
+        self.update_scoreboard()
+
+    def r_point(self):
+        self.r_score += 1
+        self.update_scoreboard()
+
+
+
+
+
+
+
+
+
+
+
+

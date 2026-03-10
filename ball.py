@@ -1,8 +1,7 @@
 from turtle import Turtle
 
-
 class Ball(Turtle):
-
+    '''This class is responsible for creating the ball and handling its movement and bouncing'''
     def __init__(self):
         super().__init__()
         self.color("white")
@@ -18,7 +17,7 @@ class Ball(Turtle):
         self.goto(new_x, new_y)
 
     def bounce_y(self):
-        self.y_move *= -1
+        self.y_move *= -1 # direction change
 
     def bounce_x(self):
         self.x_move *= -1
